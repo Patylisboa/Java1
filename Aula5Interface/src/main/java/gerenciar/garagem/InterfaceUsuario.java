@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class InterfaceUsuario {
 	
-	public static void main(String[] args) {
+	public static void main(String[]throws args) {
 		
 		Scanner scanner = new Scanner(System.in);
 		Garagem garagem  = new Garagem();
@@ -51,7 +51,7 @@ public class InterfaceUsuario {
 			}else if (opcao == 4){
 				System.out.println("Veiculos encontrados: ");
 				Set<Veiculo> veiculos = garagem.Listar(veiculo);
-				for(Veiculo veiculo : veiculos){
+				for(Veiculo veiculo : veiculos){ 
 					System.out.println(veiculo);
 				}
 			}else{
@@ -59,7 +59,15 @@ public class InterfaceUsuario {
 		
 		scanner.close();
 		
-	}
+		private static int menu(Scanner scanner) throws IOEception{
+			System.out.println("1 - Adicionar");
+			System.out.println("2 - Vender (por placa");
+			System.out.println("3 - Buscar (por placa");
+			System.out.println("4 - Listar");
+			System.out.println("5 - Sair");
+		}
+		
+		}
 	
    }
 }

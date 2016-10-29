@@ -1,14 +1,21 @@
 package gerador.senha;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GeradorSenha {
 	
-	private List<String> senhaPadrao;
-	private List <String> senhaIdoso;
+	private List<Integer> senhaPadrao;
+	private List <Integer> senhaIdoso;
 	
-	int contID = 0;
-	int contP = 0 ;
+	private int contID ;
+    private	int contP  ;
+    
+    public GeradorSenha(){
+    	this.senhaIdoso = new ArrayList<>();
+    	this.senhaPadrao = new ArrayList<>();
+    	
+    }
 	
 	
 	

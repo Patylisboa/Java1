@@ -12,8 +12,12 @@ public class TestaCalculoArea {
 	quadrado.setLado(4);
 	retangulo.setAltura(3);
 	retangulo.setLargura(5);
+	calculaArea.calcular(circulo);
 	
-	System.out.println(calculaArea);
+	System.out.println(quadrado.getArea());
+	System.out.println(circulo.getArea());
+	System.out.println(retangulo.getArea());
+	
 	
 	}
 	
