@@ -1,0 +1,27 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="/layout.xhtml">
+
+    <ui:define name="conteudo">
+      	<h:form id="formLogin" prependId="false">
+      		<p:growl id="growl" showDetail="false" />
+      		<p:outputLabel>Usuários</p:outputLabel>
+    		<p:dataTable var="livro" value="#{livroMB.livros}" >
+  			    <p:column headerText="Login">
+			      <h:outputText value="#{livro.nome}" />
+			  </p:column>
+    		</p:dataTable>
+    		<h:outputLabel  for="livro"  value="nome:" />   
+		     <h:selectOneMenu id="livro" value="#{livroMB.livro}" >
+		     	<f:selectItems value="#{livroMB.livros}" var="livro" itemLabel="#{livro.nome}"/>
+		     </h:selectOneMenu>    	
+		   <p:outputLabel id="painelSenha">
+    			nome: #{livroMB.livro.nome}
+    		</p:outputLabel>
+    		<p:commandButton value="Mostrar senha" update="painelSenha"/>
+        </h:form>
+    </ui:define> 
+</ui:composition>  
