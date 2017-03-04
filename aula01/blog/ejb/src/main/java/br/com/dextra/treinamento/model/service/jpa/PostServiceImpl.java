@@ -3,13 +3,16 @@ package br.com.dextra.treinamento.model.service.jpa;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import br.com.dextra.treinamento.model.domain.Post;
+import br.com.dextra.treinamento.model.service.interceptor.LogIntercepter;
 
 @Stateless
+@Interceptors(value = {LogIntercepter.class})
 public class PostServiceImpl implements PostServiceLocal {
 	
 	@PersistenceContext(unitName = "blog-pu")

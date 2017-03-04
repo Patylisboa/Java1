@@ -10,4 +10,6 @@ public interface TesteWebServiceInterface extends Remote {
 	public static final String TARGET_NAME_SPACE = "http://service.model.treinamento.dextra.com.br";
 	
 	public void testarChamadaWS();
+	
+	public void criarPost(String titulo, String descricao);
 }

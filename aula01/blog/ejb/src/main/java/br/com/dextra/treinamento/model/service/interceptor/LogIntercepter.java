@@ -4,6 +4,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.PostActivate;
 import javax.ejb.PrePassivate;
+import javax.interceptor.AroundInvoke;
 import javax.interceptor.InvocationContext;
 
 public class LogIntercepter {
@@ -26,6 +27,15 @@ public class LogIntercepter {
 	@PostActivate
 	public void activate(InvocationContext ctx){
 		System.out.println("EJB FOI ATIVADO " + ctx.getTarget().getClass().getSimpleName());
+	}
+	
+	@AroundInvoke
+	public  Object logar(InvocationContext ctx) throws Exception{
+		String classe = ctx.getTarget().getClass().getSimpleName();
+		String metodo = ctx.getMethod().getName();
+		System.out.println("NOME_DA_CLASSE:" + classe);
+		System.out.println("NOME_DO_METODO:" + metodo);
+		return ctx.proceed();
 	}
 
 }

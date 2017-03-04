@@ -13,6 +13,22 @@ import java.net.URL;
 @ManagedBean(name = "testarWebServiceMB")
 public class TestarWebServiceMB {
 	
+	
+	private String titulo;
+	private String descricao;
+	
+	public void salvarPost(){
+		try {
+			TesteWebServiceInterface obtemWS = obtemWS();
+			obtemWS.criarPost(titulo, descricao);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public void testarChamadas(){
 		try {
 			TesteWebServiceInterface obtemWS = obtemWS();
@@ -42,6 +58,22 @@ public class TestarWebServiceMB {
 				.getPort(new QName(targetNamespace, portName),
 						TesteWebServiceInterface.class);
 		return testeWebService;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	
 }
