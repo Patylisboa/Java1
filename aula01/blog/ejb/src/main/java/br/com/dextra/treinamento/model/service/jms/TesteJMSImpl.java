@@ -1,10 +1,19 @@
 package br.com.dextra.treinamento.model.service.jms;
 
 import javax.ejb.Stateless;
-import javax.jms.*;
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
+import javax.jms.JMSException;
+import javax.jms.MessageProducer;
+import javax.jms.ObjectMessage;
+import javax.jms.Queue;
+import javax.jms.Session;
+import javax.jms.TextMessage;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+
+import br.com.dextra.treinamento.model.domain.Post;
 
 @Stateless
 public class TesteJMSImpl implements TesteJMSLocal {
@@ -25,9 +34,14 @@ public class TesteJMSImpl implements TesteJMSLocal {
 			Queue queue = (Queue) ctx.lookup("queue/minhaFila");
 			publisher = session.createProducer(queue);
 
-			 TextMessage msg =
-			 session.createTextMessage("Esta eh a mensagem enviada para fila");
-			 publisher.send(msg);
+//			 TextMessage msg =
+//			 session.createTextMessage("Esta eh a mensagem enviada para fila");
+//			 publisher.send(msg);
+			 
+			 
+			 Post post = new Post("titulo jms", "descricao jms");
+			 ObjectMessage msgObj = session.createObjectMessage(post);
+			 publisher.send(msgObj);
 
 		} catch (JMSException e) {
 			// Tratar excecao

@@ -5,7 +5,10 @@ import javax.ejb.MessageDriven;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
+import javax.jms.ObjectMessage;
 import javax.jms.TextMessage;
+
+import br.com.dextra.treinamento.model.domain.Post;
 
 @MessageDriven(activationConfig = {
 		@ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
@@ -15,11 +18,15 @@ public class ConsumidorFila implements MessageListener {
 
 	@Override
 	public void onMessage(Message msg){
-		TextMessage mensagens = (TextMessage) msg;
 		
+//		TextMessage mensagens = (TextMessage) msg;
+		ObjectMessage mensagemPost = (ObjectMessage) msg;
 			try {
-				String texto = mensagens.getText();
-				System.out.println("MENSAGEM:" + texto);
+//				String texto = mensagens.getText();
+				Post post = (Post)mensagemPost.getObject();
+				System.out.println("MENSAGEM:" + post.toString());
+			
+//				System.out.println("MENSAGEM:" + texto);
 			} catch (JMSException e) {
 				e.printStackTrace();
 			}			
