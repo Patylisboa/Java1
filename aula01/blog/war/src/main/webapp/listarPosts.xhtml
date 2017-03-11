@@ -37,7 +37,8 @@
         				<h:outputText value="Operacoes" />
         			</f:facet>
         			
-					<h:commandButton id="btnAlterar"  value="Alterar" action="#{listarPostsMB.prepararAlteracao}">
+					<h:commandButton id="btnAlterar"  value="Alterar" action="#{listarPostsMB.prepararAlteracao}"
+					rendered="#{request.isUserInRole('administrador')}">
 						<f:param name="titulo" value="#{post.titulo}" />
 						<f:param name="id" value="#{post.id}" />
 					</h:commandButton>        

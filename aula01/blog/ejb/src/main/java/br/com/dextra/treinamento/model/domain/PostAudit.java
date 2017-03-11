@@ -19,6 +19,8 @@ public class PostAudit {
 	
 	private String parametros;
 	
+	private String login;
+	
 	private Date data = new Date();
 	
 	
@@ -61,6 +63,14 @@ public class PostAudit {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
 	}
 	
 }
