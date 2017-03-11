@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import br.com.dextra.treinamento.model.domain.Post;
+import br.com.dextra.treinamento.model.service.interceptor.AuditInterceptor;
 import br.com.dextra.treinamento.model.service.interceptor.LogIntercepter;
 
 @Stateless
@@ -18,11 +19,12 @@ public class PostServiceImpl implements PostServiceLocal {
 	@PersistenceContext(unitName = "blog-pu")
 	private EntityManager em;
 	
-	
-	public void salvar(Post p) {
+	@Interceptors(value = {AuditInterceptor.class})
+	public void salvar(Post p){
 		em.merge(p);
 	}
 	
+
 	@SuppressWarnings("unchecked")
 	public List<Post> listar() {
 		 String sql = "FROM Post";
@@ -31,6 +33,7 @@ public class PostServiceImpl implements PostServiceLocal {
 	}
 
 	@Override
+	@Interceptors(value = {AuditInterceptor.class})
 	public void excluir(Long id) {
 		Post post = buscarPorId(id);
 		em.remove(post);

@@ -9,11 +9,21 @@
     </h:head>
     <h:body>
         <h2>Bem vindo ao blog</h2>
-        
-	        <h3>Exemplo JPA - Blog</h3>
+        	<h:panelGrid rendered="#{request.isUserInRole('usuario')}">
+        	
+        	<h3>Exemplo JPA - Blog</h3>
+        	
 	        <h:form>
-	        	<h:commandButton value="Ver posts" action="#{listarPostsMB.listar}" />
+	        
+	       		<h:commandButton value="Ver posts" action="#{listarPostsMB.listar}" />
+	       		
 	        </h:form>
+	        
+	        </h:panelGrid>
+	        
+	        <h:panelGrid rendered="#{request.isUserInRole('administrador')}">
+	        
+	        
 	        
 	        <h3>Stateless x Stateful</h3>
 	        <h:form>
@@ -48,6 +58,19 @@
         	<h:commandButton value="Salvar" action="#{testarWebServiceMB.salvarPost}" />
         	
         </h:form>
+        
+         <h3>Exemplo Transacoes</h3>
+	        <h:form>
+	        	<h:commandButton value="Required" action="#{testarTransacoesMB.testarRequired}" />
+	        	<h:commandButton value="Requires New" action="#{testarTransacoesMB.testarRequiresNew}" />
+	     
+	        </h:form>
+	        </h:panelGrid>
+	        
+	        <h:form>
+	        	<h:commandButton value="Logout" action="#{logOutMB.logOut}" />
+	        		     
+	        </h:form>
 	        
     </h:body>
 </html>
